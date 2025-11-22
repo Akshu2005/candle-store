@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export DJANGO_SETTINGS_MODULE=candle_shop.settings
+export DJANGO_SETTINGS_MODULE=config.settings
 
 echo "Starting Gunicorn server..."
-gunicorn candle_shop.wsgi:application --bind 0.0.0.0:$PORT --workers 3
+gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3
