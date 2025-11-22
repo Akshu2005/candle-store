@@ -75,7 +75,7 @@ CandleShop{% endblock %} {% block content %}
         <div class="card-thumb">
           <a href="{% url 'product_detail' p.slug %}">
             <img
-              src="{% static 'img/' %}{{ p.image }}"
+              src="{% static 'img/products/' %}{{ p.image }}"
               class="card-img-top"
               alt="{{ p.name }}"
             />

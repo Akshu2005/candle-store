@@ -13,8 +13,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     stock = models.PositiveIntegerField(default=10)
-    # image = models.ImageField(upload_to='candles/')
-    image = models.ImageField(upload_to='products/')
+    image = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self): return self.name
