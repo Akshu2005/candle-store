@@ -1,0 +1,7 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
+<h2>Payment successful</h2>
+<p>Order #{{ order.id }} — Total ₹{{ order.total }}</p>
+<a href="/" class="btn btn-primary">Continue shopping</a>
+{% endblock %}

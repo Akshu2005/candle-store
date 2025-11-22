@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
+<h2>Your Orders</h2>
+{% if orders %}
+  {% for o in orders %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>Order #{{ o.id }} — {{ o.created_at.date }} — {% if o.paid %}<span class="text-success">Paid</span>{% else %}<span class="text-warning">Pending</span>{% endif %}</h5>
+        <p>Total: ₹{{ o.total }}</p>
+        <ul>
+          {% for it in o.items.all %}
+            <li>{{ it.product.name }} — Qty: {{ it.quantity }} — ₹{{ it.price }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>You have no orders yet.</p>
+{% endif %}
+{% endblock %}

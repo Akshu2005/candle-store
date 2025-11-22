@@ -1,0 +1,63 @@
+[
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Aromatherapy",
+      "slug": "aromatherapy"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+      "name": "Gift Sets",
+      "slug": "gift-sets"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Vanilla Bliss",
+      "slug": "vanilla-bliss",
+      "description": "Warm vanilla scented.",
+      "price": "399.00",
+      "stock": 20,
+      "image": "candles/sample_candle.png",
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "name": "Lavender Calm",
+      "slug": "lavender-calm",
+      "description": "Relaxing lavender scented.",
+      "price": "449.00",
+      "stock": 15,
+      "image": "candles/sample_candle.png",
+      "is_active": true,
+      "created_at": "2025-01-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+      "category": 2,
+      "name": "Rose Glow",
+      "slug": "rose-glow",
+      "description": "Romantic rose fragrance.",
+      "price": "499.00",
+      "stock": 10,
+      "image": "candles/sample_candle.png",
+      "is_active": true,
+      "created_at": "2025-01-03T00:00:00Z"
+    }
+  }
+]

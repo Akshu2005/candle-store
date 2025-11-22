@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %} {% load static %} {% block title %}Checkout —
+CandleShop{% endblock %} {% block content %}
+<h2>Checkout (Demo)</h2>
+<div class="card p-3 mb-3">
+  <h5>Order summary</h5>
+  <ul>
+    {% for it in items %}
+    <li>{{ it.product.name }} × {{ it.quantity }} — ₹{{ it.subtotal }}</li>
+    {% endfor %}
+  </ul>
+  <div class="mt-2"><strong>Total: ₹{{ total }}</strong></div>
+</div>
+
+<form method="post" class="card p-3">
+  {% csrf_token %}
+  <p>
+    This checkout is a dummy flow for demo. Press Pay to simulate payment
+    success.
+  </p>
+  <button class="btn btn-success" type="submit">Pay (Demo)</button>
+</form>
+{% endblock %}

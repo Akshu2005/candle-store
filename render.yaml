@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: candleshop
+    env: python
+    buildCommand: "./venv/bin/pip install -r requirements.txt"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings
+      - key: PYTHON_VERSION
+        value: 3.12
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: candleshop-db
+          property: connectionString
+
+databases:
+  - name: candleshop-db
+    databaseName: candleshopdb
+    user: candleshopuser
+    plan: free
