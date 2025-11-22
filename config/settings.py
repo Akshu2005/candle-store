@@ -1,15 +1,21 @@
 import os
-import dj_database_url
 from pathlib import Path
 import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.environ.get('SECRET_KEY','dev-secret')
-DEBUG = os.environ.get('DEBUG','') != 'False'
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret')
+DEBUG = os.environ.get('DEBUG', '').lower() == 'true'
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes','django.contrib.sessions',
-    'django.contrib.messages','django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
     'shop',
 ]
 
@@ -25,44 +31,44 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
-TEMPLATES = [{
-    'BACKEND':'django.template.backends.django.DjangoTemplates',
-    'DIRS': [],
-    'APP_DIRS': True,
-    'OPTIONS':{'context_processors':[
-        'django.template.context_processors.debug',
-        'django.template.context_processors.request',
-        'django.contrib.auth.context_processors.auth',
-        'django.contrib.messages.context_processors.messages',
-    ]}
-}]
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ]
+        }
+    }
+]
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# DATABASE_URL = os.environ.get('DATABASE_URL')
-# if DATABASE_URL:
-#     DATABASES = {'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
-# else:
-#     DATABASES = {'default': {'ENGINE':'django.db.backends.sqlite3','NAME': BASE_DIR/'db.sqlite3'}}
+# DATABASE CONFIG
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default="sqlite:///db.sqlite3",
+        conn_max_age=600
+    )
 }
 
-AUTH_PASSWORD_VALIDATORS = []
-LANGUAGE_CODE='en-us'
-TIME_ZONE='UTC'
-USE_I18N=True
-USE_TZ=True
-
-
+# STATIC FILES (Whitenoise)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-# STATICFILES_DIRS = [BASE_DIR / 'shop' / 'static']
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [
+    BASE_DIR / 'shop' / 'static'
+]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# MEDIA
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
